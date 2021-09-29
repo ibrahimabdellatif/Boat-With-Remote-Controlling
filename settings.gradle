@@ -1,0 +1,2 @@
+rootProject.name = "Control view- IOT"
+include ':app'
