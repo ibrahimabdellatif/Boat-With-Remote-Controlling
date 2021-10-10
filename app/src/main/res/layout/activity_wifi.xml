@@ -10,50 +10,33 @@
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Please Select Device (Wi-Fi)"
+        android:layout_marginStart="15dp"
+        android:layout_marginBottom="300dp"
+        android:text="Welcome to boat controller"
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_wifi_devices"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="45dp"
-        android:layout_marginBottom="55dp"
-        app:layout_constraintTop_toBottomOf="@id/tv_title"
-        tools:ignore="MissingConstraints"
-        tools:listitem="@layout/wifi_list_item"/>
-
     <Button
-        android:id="@+id/btn_next"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Next"
+        android:layout_marginBottom="100dp"
+        android:text="let's starting"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_wifi_devices"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title"
         tools:ignore="MissingConstraints" />
 
-    <Button
-        android:id="@+id/btn_previous"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Previous"
+        android:padding="10dp"
+        android:text="please make sure that the nodeMcu is connecting to the same WiFi that you have in your device"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rv_wifi_devices"
+        app:layout_constraintTop_toBottomOf="@+id/btn_start"
         tools:ignore="MissingConstraints" />
-
-    <Button
-        android:id="@+id/btn_scan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Scan"
-        app:layout_constraintBottom_toTopOf="@+id/btn_next"
-        tools:ignore="MissingConstraints"
-        />
-
 </androidx.constraintlayout.widget.ConstraintLayout>

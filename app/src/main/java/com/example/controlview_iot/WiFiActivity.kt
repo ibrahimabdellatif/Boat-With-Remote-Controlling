@@ -13,7 +13,7 @@ class WiFiActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_wifi)
-        next = findViewById(R.id.btn_next)
+        next = findViewById(R.id.btn_start)
 
         next.setOnClickListener { click ->
             var intent = Intent(applicationContext, ControlActivity::class.java)
