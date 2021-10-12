@@ -18,6 +18,9 @@ public class DCMotorOff extends AsyncTask<Void,Void,String> {
             URL url = new URL("http://192.168.1.33/dcOFF");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
+             if (httpURLConnection.getResponseCode() != HttpURLConnection.HTTP_OK){
+                Log.d("dcmotoroff class" , "error in httpUrlConnection")
+             }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
 
 
