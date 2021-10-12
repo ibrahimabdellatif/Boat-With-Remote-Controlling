@@ -28,35 +28,39 @@ bool dcMotorChecked = false;
 bool servoRight = false;
 bool servoLeft = false;
 
-String dcON , dcOFF  , servoRightON , servoLeftON;
 void dcMotorOn(){
 
 //   digitalWrite(A1A , LOW);
 //   digitalWrite(A1B , HIGH);
    dcMotorChecked = true;
-  server.send(200 , "text/html" , dcON);
+   //sending the status of requst 200 
+  server.send(200 , "text/html" , "dc motor is on");
   }
 void dcMotorOff(){
   
 //   digitalWrite(A1A , LOW);
 //   digitalWrite(A1B , LOW);
    dcMotorChecked = false;
-  server.send(200 , "text/html" , dcOFF);
+  server.send(200 , "text/html" , "de motor is off");
   }
 void servoRight(){
 
 //  servo.write(180);
   servoRight = true
-  server.send(200 , "text/html" , servoRightON);
+  server.send(200 , "text/html" , "servo right is on");
   
   }
 void servoLeft(){
   
 //  servo.write(-180);
   servoLeft = true;
-  server.send(200 , "text/html" , servoLeftON);
+  server.send(200 , "text/html" , "servo left is on");
   }
 
+void handleNotFound(){
+   // Send HTTP status 404 (Not Found) when there's no handler for the URI in the request with 404: Not found message
+  server.send(404, "text/html", "404: Not found");
+}
 void setup() {
 //init wifi connection
 Serial.begin(115200);
@@ -75,6 +79,8 @@ server.on("/dcON" , dcMotorOn);
 server.on("/dcOFF" , dcMotorOff);
 server.on("/servoRightON" , servoRight);
 server.on("/servoLeftON" , servoLeft);
+   // When a client requests an unknown URI (i.e. something other than "/"), call function "handleNotFound"
+server.onNotFound(handleNotFound);
 
 server.begin();
   // put your setup code here, to run once:
@@ -92,7 +98,7 @@ server.begin();
 void loop() {
 
   //for server connections
-  server.handleClient();
+  server.handleClient();   // Listen for HTTP requests from clients
   delay(10);
 
   
