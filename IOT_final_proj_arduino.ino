@@ -28,7 +28,7 @@ bool dcMotorChecked = false;
 bool servoRight = false;
 bool servoLeft = false;
 
-String motorOn , motorOff  , turnOn , turnOff;
+String motorOn , motorOff  , rightOn , leftOn;
 void dcMotorOn(){
 
 //   digitalWrite(A1A , LOW);
@@ -47,14 +47,14 @@ void servoRight(){
 
 //  servo.write(180);
   servoRight = true
-  server.send(200 , "text/html" , turnOn);
+  server.send(200 , "text/html" , rightOn);
   
   }
 void servoLeft(){
   
 //  servo.write(-180);
   servoLeft = true;
-  server.send(200 , "text/html" , turnOn);
+  server.send(200 , "text/html" , leftOn);
   }
 
 void setup() {
