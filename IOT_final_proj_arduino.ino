@@ -28,45 +28,49 @@ bool dcMotorChecked = false;
 bool servoRight = false;
 bool servoLeft = false;
 
-String motorOn , motorOff  , rightOn , leftOn;
+String dcON , dcOFF  , servoRightON , servoLeftON;
 void dcMotorOn(){
 
 //   digitalWrite(A1A , LOW);
 //   digitalWrite(A1B , HIGH);
    dcMotorChecked = true;
-  server.send(200 , "text/html" , motorOn);
+  server.send(200 , "text/html" , dcON);
   }
 void dcMotorOff(){
   
 //   digitalWrite(A1A , LOW);
 //   digitalWrite(A1B , LOW);
    dcMotorChecked = false;
-  server.send(200 , "text/html" , motorOff);
+  server.send(200 , "text/html" , dcOFF);
   }
 void servoRight(){
 
 //  servo.write(180);
   servoRight = true
-  server.send(200 , "text/html" , rightOn);
+  server.send(200 , "text/html" , servoRightON);
   
   }
 void servoLeft(){
   
 //  servo.write(-180);
   servoLeft = true;
-  server.send(200 , "text/html" , leftOn);
+  server.send(200 , "text/html" , servoLeftON);
   }
 
 void setup() {
 //init wifi connection
 Serial.begin(115200);
+   //STA -> is the station while connecting the node with wifi router device or hotspot
 WiFi.mode(WIFI_STA);
 WiFi.begin(ssid , password);
 
-while(WiFi.status()!=WL_CONNECTED)delay(500);
+   // below line is equal with this -> (WiFi.status() != WL_CONNECTED)
+while(WiFi.status()!=WL_CONNECTED)delay(1000);
 
+   //getting the ip of node that we needed when use android application
 Serial.println(WiFi.localIP());
 
+   //sending the methods with 4 functions 
 server.on("/dcON" , dcMotorOn);
 server.on("/dcOFF" , dcMotorOff);
 server.on("/servoRightON" , servoRight);
