@@ -17,8 +17,11 @@ public class ServoLeft extends AsyncTask<Void, Void, String> {
             URL url = new URL("http://192.168.1.33/servoLeftON");
             HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
             InputStream inputStream = httpURLConnection.getInputStream();
+             if (httpURLConnection.getResponseCode() != HttpURLConnection.HTTP_OK){
+                Log.d("servo left class" , "error in httpUrlConnection")
+             }
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
-
+            
 
         } catch (MalformedURLException e) {
 
