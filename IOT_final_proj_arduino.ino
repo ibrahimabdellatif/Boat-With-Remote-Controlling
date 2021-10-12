@@ -77,40 +77,41 @@ server.begin();
   pinMode(trigPin , OUTPUT);
   pinMode(echoPin , INPUT);
 
-  Serial.begin(9600);
-  Serial.println("this is ultraSonic");
   //setting motor drivers to outputs 
   pinMode(A1A , OUTPUT);
   pinMode(A1B , OUTPUT);
   //setup servo
   servo.attach(2); //D4
   servo.write(0);
-  delay(2000);
 }
 
 void loop() {
 
   //for server connections
   server.handleClient();
-  delay(1);
+  delay(10);
 
   
 //because it works on wise clock cycle  
   if(dcMotorChecked){
    digitalWrite(A1A , LOW);
-   digitalWrite(A1B , LOW);
+   digitalWrite(A1B , HIGH);
   }else{
   digitalWrite(A1A , LOW);
-  digitalWrite(A1B , HIGH);
+  digitalWrite(A1B , LOW);
   }
 
   //servo conditions for left and right 
   if(servoRight){
     servo.write(180);
-  }else if{
-    servo.write(-180);
   }else{
     servo.write(0);
+  }
+   
+   if(servoLeft){
+    servo.write(-180);
+  }else{
+   servo.write(0);
   }
   
 //init Ultra sonic chip
@@ -125,6 +126,7 @@ duration = pulseIn(echoPin , HIGH);
 distance = duration * 0.034 / 2;
 
 //ultra sonic condition
+   //check for 30 CM
   if(distance >= 30){
   //turn off the DC motor
   
